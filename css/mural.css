@@ -1,8 +1,12 @@
+/* Importando uma fonte estilo escrita manual para as legendas */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
 .mural-body {
     overflow-y: auto !important;
     background: #0a0a0a;
     margin: 0;
     padding: 80px 20px 40px 20px;
+    min-height: 100vh;
 }
 
 .mural-header {
@@ -15,67 +19,89 @@
     color: var(--primary-pink);
     letter-spacing: 4px;
     margin-bottom: 10px;
-}
-
-.subtitle {
-    color: white;
-    opacity: 0.7;
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-.convite {
-    color: var(--primary-pink);
-    opacity: 0.5;
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.75rem;
-    font-style: italic;
+    text-transform: uppercase;
 }
 
 .photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .photo-card {
-    background: white;
-    padding: 12px 12px 35px 12px;
-    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+    background: #fdfdfd; /* Cor de papel Polaroid */
+    padding: 15px 15px 45px 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transform: rotate(var(--rot));
-    transition: transform 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Efeito de "Fita Adesiva" no topo */
+.photo-card::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 2;
 }
 
 .photo-card:hover {
-    transform: rotate(0deg) scale(1.05);
-    z-index: 10;
+    transform: rotate(0deg) scale(1.1) translateY(-10px);
+    z-index: 100;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 }
 
 .photo-card img {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
-    border: 1px solid #eee;
+    border: 1px solid #ddd;
+    /* Efeito Pixel/Blur inicial */
+    filter: brightness(0.6) blur(4px);
+    transition: all 0.6s ease;
+}
+
+.photo-card:hover img {
+    filter: brightness(1) blur(0);
 }
 
 .photo-card span {
-    color: #333;
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.85rem;
+    color: #222;
+    font-family: 'Caveat', cursive; /* Fonte escrita à mão */
+    font-size: 1.4rem;
     display: block;
     margin-top: 15px;
     text-align: center;
+    opacity: 0.8;
 }
 
+/* Ajuste no botão de voltar para combinar com a home */
 .nav-back { position: fixed; top: 20px; left: 20px; z-index: 1000; }
 .btn-back {
     text-decoration: none;
-    border: 2px solid var(--primary-pink);
+    border: 1px solid var(--primary-pink);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
     color: white;
-    padding: 8px 15px;
+    padding: 10px 20px;
+    border-radius: 50px;
     font-family: 'Courier Prime', monospace;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+.btn-back:hover {
+    background: white;
+    color: black;
 }
